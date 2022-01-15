@@ -40,6 +40,15 @@ app.get('/products', (req, res) => {
   });
 });
 
+app.get('/products/:id', (req, res) => {
+  let sql = `SELECT * FROM products WHERE idproducts = ${req.params.id}`;
+
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.send(results);
+  });
+});
+
 app.delete('/products/:id', (req, res) => {
   let sql = `DELETE FROM products WHERE idproducts = ${req.params.id}`;
 
